@@ -121,18 +121,19 @@ You are a helpful AI assistant that extracts the data part of the paper.
 You are given a paper that uses data to claim findings.
 Your job is to answer what features were used, what these features mean
 and generate a sample dataset of 100 records of synthetic data for these features.
-You have to keep the synthetic data with the similar distribution in all features.
-The collinearity between the synthetic data should remain similar to what is mentioned in the paper.
-The distribution of the categorical data should be consistent in the data produced.
-The distribution of numerical data should be consistent with either uniform distribution or binomial distribution or normal distribution.
-This should be applied to each and every feature.
-The output should be only the synthetic data in CSV format, without any explanations or additional text.
+The output should be only the synthetic data in CSV format. Give an explanation on what features have been used in the paper, 
+what their distribution is.
 """
         
         user_prompt = f"""Based on the following context from a research paper, please generate a synthetic dataset of 100 records.
 
 Context from the paper:
 {context_string}
+You have to keep the synthetic data with the similar distribution in all features.
+The collinearity between the synthetic data should remain similar to what is mentioned in the paper.
+The distribution of the categorical data should be consistent in the data used regarding if it is imbalanced or not.
+The distribution of numerical data should be consistent with either uniform distribution or binomial distribution or normal distribution.
+This should be applied to each and every feature. If there is a skew in the distribution, you should keep it as it is.
 """
         
         try:
