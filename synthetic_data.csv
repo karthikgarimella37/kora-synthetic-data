@@ -39,7 +39,6 @@ X,Y,shot_type,distance,angle,xg,player_id,is_goal
 0.07,0.04,free_kick_curler,30,13,0.03,37,0
 0.62,0.50,dink,15,47,0.23,38,1
 0.31,0.23,low_driven_shot,29,29,0.09,39,0
-0.89,0.85,shot_from_cross,6,71,0.57,40,1
 0.03,0.01,long_range_freekick,36,8,0.01,41,0
 0.51,0.38,half_volley_curler,21,36,0.14,42,0
 0.77,0.67,powerful_header,9,54,0.40,43,1
