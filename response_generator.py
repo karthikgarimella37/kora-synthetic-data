@@ -129,6 +129,9 @@ class ResponseGenerator:
             You are given a paper that uses data to claim findings.
             Your job is to answer what features were used, what these features mean
             and generate a sample dataset of 100 records of synthetic data for these features.
+            You have to keep the synthetic data with the similar distribution in all features.
+            The collinearity between the synthetic data should remain similar to what is mentioned in the paper.
+            
             """
         
         # Construct the prompt
