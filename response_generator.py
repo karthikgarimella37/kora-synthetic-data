@@ -2,20 +2,21 @@ import os
 from typing import List, Dict, Any, Optional
 import openai
 from similarity_search import load_index, load_embedding_model, find_similar_chunks, beautify_text
+import pandas as pd
 
-# Try to load environment variables from .env file
+
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
-    # dotenv not available, skip loading .env file
+    
     pass
 
 
-class ResponseGenerator:
+class SyntheticDataGenerator:
     """
-    A response generator that uses similarity search to find relevant context
-    and generates responses using OpenRouter API (supporting various LLM models).
+    A class to generate synthetic data based on data descriptions
+    found in a research paper, using an LLM.
     """
     
     def __init__(self, 
@@ -24,17 +25,17 @@ class ResponseGenerator:
                  embedding_model_name: str = "all-MiniLM-L6-v2",
                  index_path: str = "faiss_index.index",
                  text_chunks_path: str = "text_chunks.pkl",
-                 max_context_length: int = 4000):
+                 max_context_length: int = 8000):
         """
-        Initialize the response generator using OpenRouter API.
+        Initializes the SyntheticDataGenerator.
         
         Args:
-            openai_api_key: OpenRouter API key (if None, will look for OPENROUTER_API_KEY env var)
-            model_name: Model to use for response generation (OpenRouter format, e.g., "openai/gpt-3.5-turbo")
-            embedding_model_name: HuggingFace embedding model name
-            index_path: Path to the FAISS index file
-            text_chunks_path: Path to the text chunks pickle file
-            max_context_length: Maximum length of context to include in prompt
+            openai_api_key: OpenRouter API key.
+            model_name: The LLM to use for generation.
+            embedding_model_name: The model for creating text embeddings.
+            index_path: Path to the FAISS index of the paper's text.
+            text_chunks_path: Path to the pickled text chunks from the paper.
+            max_context_length: Maximum context length for the LLM prompt.
         """
         # Set up OpenRouter API key
         if openai_api_key:
@@ -54,32 +55,31 @@ class ResponseGenerator:
         self.model_name = model_name
         self.max_context_length = max_context_length
         
-        # Load embedding model and index
+        # Load embedding model and FAISS index
         print("Loading embedding model and FAISS index...")
         self.embedding_model = load_embedding_model(embedding_model_name)
         self.index, self.text_chunks = load_index(index_path, text_chunks_path)
         
         if self.index is None or self.text_chunks is None:
-            raise ValueError("Failed to load index or text chunks. Please ensure the files exist.")
+            raise ValueError("Failed to load FAISS index or text chunks.")
         
-        print(f"Successfully loaded index with {len(self.text_chunks)} text chunks")
+        print(f"Successfully loaded index with {len(self.text_chunks)} text chunks.")
     
-    def get_relevant_context(self, query: str, k: int = 5) -> tuple[List[Dict[str, Any]], str]:
+    def get_relevant_context(self, query: str, k: int = 10) -> str:
         """
-        Find relevant context chunks for the given query.
+        Retrieves relevant text chunks from the paper to form a context.
         
         Args:
-            query: The user's query
-            k: Number of similar chunks to retrieve
+            query: The query to find relevant text for.
+            k: The number of chunks to retrieve.
             
         Returns:
-            tuple: (list of relevant chunks, formatted context string)
+            A string containing the formatted context.
         """
         relevant_chunks = find_similar_chunks(
             query, self.embedding_model, self.index, self.text_chunks, k=k
         )
         
-        # Format context for the prompt
         context_parts = []
         total_length = 0
         
@@ -87,64 +87,56 @@ class ResponseGenerator:
             chunk_text = beautify_text(chunk)
             page_number = chunk.get("page", "N/A")
             
-            # Create a formatted chunk with metadata
             formatted_chunk = f"[Chunk {i+1}, Page {page_number}]: {chunk_text}"
             
-            # Check if adding this chunk would exceed max context length
             if total_length + len(formatted_chunk) > self.max_context_length:
                 break
                 
             context_parts.append(formatted_chunk)
             total_length += len(formatted_chunk)
         
-        context_string = "\n\n".join(context_parts)
-        return relevant_chunks, context_string
+        return "\n\n".join(context_parts)
     
-    def generate_response(self, 
-                         query: str, 
-                         k: int = 5, 
-                         temperature: float = 0.7,
-                         max_tokens: int = 500,
-                         system_prompt: Optional[str] = None) -> Dict[str, Any]:
+    def generate_synthetic_data(self, 
+                                k: int = 10, 
+                                temperature: float = 0.7,
+                                max_tokens: int = 4000) -> Dict[str, Any]:
         """
-        Generate a response to the user's query using relevant context.
+        Generates synthetic data by prompting the LLM with context from the paper.
         
         Args:
-            query: The user's query
-            k: Number of similar chunks to retrieve for context
-            temperature: Sampling temperature for response generation
-            max_tokens: Maximum tokens in the generated response
-            system_prompt: Custom system prompt (if None, uses default)
+            k: The number of context chunks to use.
+            temperature: The temperature for the LLM generation.
+            max_tokens: The maximum number of tokens for the LLM response.
             
         Returns:
-            dict: Contains 'response', 'relevant_chunks', 'context_used'
+            A dictionary containing the generated data and metadata.
         """
-        # Get relevant context
-        relevant_chunks, context_string = self.get_relevant_context(query, k)
+        # A fixed query to find the data description sections of the paper
+        context_query = "Detailed description of dataset, features, and data analysis methodology."
+        context_string = self.get_relevant_context(context_query, k)
         
-        # Default system prompt
-        if system_prompt is None:
-            system_prompt = """
-            You are a helpful AI assistant that extracts the data part of the paper.
-            You are given a paper that uses data to claim findings.
-            Your job is to answer what features were used, what these features mean
-            and generate a sample dataset of 100 records of synthetic data for these features.
-            You have to keep the synthetic data with the similar distribution in all features.
-            The collinearity between the synthetic data should remain similar to what is mentioned in the paper.
-            
-            """
+        system_prompt = """
+You are a helpful AI assistant that extracts the data part of the paper.
+You are given a paper that uses data to claim findings.
+Your job is to answer what features were used, what these features mean
+and generate a sample dataset of 100 records of synthetic data for these features.
+You have to keep the synthetic data with the similar distribution in all features.
+The collinearity between the synthetic data should remain similar to what is mentioned in the paper.
+The distribution of the categorical data should be consistent in the data produced.
+The distribution of numerical data should be consistent with either uniform distribution or binomial distribution or normal distribution.
+This should be applied to each and every feature.
+The output should be only the synthetic data in CSV format, without any explanations or additional text.
+"""
         
-        # Construct the prompt
-        user_prompt = f"""Context information:
+        user_prompt = f"""Based on the following context from a research paper, please generate a synthetic dataset of 100 records.
+
+Context from the paper:
 {context_string}
-
-Question: {query}
-
-Please provide a comprehensive answer based on the context above. If you reference specific information, 
-mention which chunk/page it comes from."""
+"""
         
         try:
-            # Generate response using OpenAI
+            # Generate response using OpenRouter
             response = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=[
@@ -159,56 +151,57 @@ mention which chunk/page it comes from."""
             
             return {
                 "response": generated_text,
-                "relevant_chunks": relevant_chunks,
                 "context_used": context_string,
-                "query": query,
                 "model_used": self.model_name,
-                "chunks_retrieved": len(relevant_chunks)
             }
             
         except Exception as e:
             return {
                 "response": f"Error generating response: {str(e)}",
-                "relevant_chunks": relevant_chunks,
                 "context_used": context_string,
-                "query": query,
                 "error": str(e)
             }
     
 def main():
     """
-    Main function to demonstrate the response generator.
+    Main function to generate and save synthetic data.
     """
     try:
-        # Initialize the response generator
-        generator = ResponseGenerator(
-            model_name="google/gemini-2.0-flash-exp:free",  
-            max_context_length=4000
+        # Initialize the generator
+        generator = SyntheticDataGenerator(
+            model_name="google/gemini-flash-1.5",
+            max_context_length=8000
         )
         
-        # Example queries
-        example_queries = [
-            "What are the data features used in the paper and list all the features names."
-        ]
+        print("Generator initialized. Generating synthetic data...")
         
-        print("Response Generator initialized successfully!")
-        print("\nTesting with example queries:")
-        print("=" * 50)
+        # Generate data
+        result = generator.generate_synthetic_data(k=10)
         
-        for query in example_queries:
-            print(f"\nQuery: {query}")
-            result = generator.generate_response(query, k=3)
-            print(f"Response: {result['response']}")
-            print(f"Used {result['chunks_retrieved']} chunks")
-            print("-" * 30)
-        
+        if "error" in result:
+            print(f"An error occurred: {result['error']}")
+        else:
+            # Save the synthetic data to a CSV file
+            csv_data = result['response']
+            try:
+                # The LLM is prompted to return only CSV data
+                with open("synthetic_data.csv", "w") as f:
+                    f.write(csv_data)
+                print("Synthetic data saved to synthetic_data.csv")
+                
+                # Optional: Load into pandas to verify and display
+                df = pd.read_csv("synthetic_data.csv")
+                print("\nFirst 5 rows of the synthetic dataset:")
+                print(df.head())
+                
+            except Exception as e:
+                print(f"Could not process the response as CSV: {e}")
+                print("Here is the raw response:")
+                print(csv_data)
+
     except Exception as e:
-        print(f"Error initializing response generator: {e}")
-        print("Please ensure:")
-        print("1. OPENROUTER_API_KEY environment variable is set")
-        print("2. faiss_index.index and text_chunks.pkl files exist")
-        print("3. All required dependencies are installed")
-        print("4. Get your OpenRouter API key from: https://openrouter.ai/")
+        print(f"Error initializing or running the generator: {e}")
+        print("Please ensure your environment is set up correctly.")
 
 
 if __name__ == "__main__":
