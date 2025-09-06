@@ -1,103 +1,127 @@
 ```csv
-X,Y,shot_type,distance,angle,xg,player_id,is_goal
-0.55,0.43,long_shot,25,30,0.12,1,0
-0.72,0.61,inside_box,10,45,0.35,2,1
-0.28,0.31,outside_box,20,25,0.08,3,0
-0.81,0.75,header,8,60,0.41,4,1
-0.15,0.18,freekick,30,15,0.05,5,0
-0.65,0.52,volley,15,50,0.22,6,1
-0.39,0.25,curler,28,35,0.10,7,0
-0.91,0.88,tap_in,5,75,0.60,8,1
-0.09,0.07,penalty,12,0,0.75,9,1
-0.50,0.40,through_ball,18,40,0.18,10,0
-0.78,0.68,deflected,11,55,0.30,11,1
-0.22,0.15,low_shot,22,20,0.07,12,0
-0.85,0.79,close_range,7,65,0.55,13,1
-0.18,0.12,long_range,35,10,0.03,14,0
-0.60,0.48,half_volley,16,48,0.25,15,1
-0.33,0.20,power_shot,24,32,0.09,16,0
-0.88,0.83,diving_header,6,70,0.50,17,1
-0.05,0.03,indirect_freekick,32,12,0.02,18,0
-0.58,0.46,chip,19,42,0.15,19,0
-0.75,0.65,placed_shot,9,58,0.45,20,1
-0.25,0.19,grounder,26,28,0.06,21,0
-0.82,0.77,flick,13,52,0.38,22,1
-0.12,0.09,lob,29,18,0.04,23,0
-0.67,0.56,curling_shot,14,46,0.28,24,1
-0.37,0.28,rising_shot,21,38,0.11,25,0
-0.90,0.86,one_two,4,72,0.58,26,1
-0.08,0.06,backheel,31,14,0.01,27,0
-0.53,0.41,side_foot,23,31,0.13,28,0
-0.70,0.60,first_time,17,49,0.32,29,1
-0.20,0.14,toe_poke,27,22,0.08,30,0
-0.87,0.81,header_from_corner,5,78,0.62,31,1
-0.10,0.08,bicycle_kick,34,16,0.02,32,0
-0.57,0.45,shot_on_turn,19,44,0.17,33,0
-0.73,0.63,powerful_shot,11,51,0.37,34,1
-0.27,0.22,weak_shot,24,26,0.07,35,0
-0.84,0.78,close_range_header,7,68,0.53,36,1
-0.07,0.04,free_kick_curler,30,13,0.03,37,0
-0.62,0.50,dink,15,47,0.23,38,1
-0.31,0.23,low_driven_shot,29,29,0.09,39,0
-0.03,0.01,long_range_freekick,36,8,0.01,41,0
-0.51,0.38,half_volley_curler,21,36,0.14,42,0
-0.77,0.67,powerful_header,9,54,0.40,43,1
-0.23,0.17,shot_from_deflection,26,24,0.05,44,0
-0.80,0.73,close_range_volley,10,57,0.43,45,1
-0.16,0.11,long_shot_curler,33,19,0.04,46,0
-0.69,0.58,shot_on_the_run,14,43,0.29,47,1
-0.35,0.26,driven_shot,25,34,0.10,48,0
-0.92,0.89,simple_finish,3,80,0.65,49,1
-0.02,0.00,long_range_free_kick,38,5,0.00,50,0
-0.59,0.47,cutback,18,41,0.16,51,0
-0.76,0.66,header_from_short_corner,8,62,0.48,52,1
-0.29,0.24,low_driven_curler,27,27,0.08,53,0
-0.86,0.80,close_range_flick,7,67,0.52,54,1
-0.06,0.04,freekick_power,31,11,0.02,55,0
-0.64,0.54,volley_curler,13,53,0.26,56,1
-0.38,0.29,placed_low_shot,23,33,0.11,57,0
-0.93,0.90,tap_in_from_cross,2,82,0.70,58,1
-0.04,0.02,long_ball_shot,37,9,0.01,59,0
-0.54,0.42,side_foot_shot,22,30,0.14,60,0
-0.71,0.62,first_time_shot,16,45,0.34,61,1
-0.26,0.21,toe_punt,28,23,0.07,62,0
-0.83,0.76,header_from_corner_kick,6,69,0.51,63,1
-0.01,0.00,indirect_freekick_power,35,6,0.00,64,0
-0.66,0.55,chip_shot,17,44,0.27,65,1
-0.40,0.30,rising_curler,20,39,0.12,66,0
-0.94,0.91,simple_finish_from_cross,1,85,0.72,67,1
-0.00,0.00,long_range_free_kick_power,39,4,0.00,68,0
-0.56,0.44,cut_back_shot,19,37,0.15,69,0
-0.74,0.64,header_from_short_corner_kick,9,56,0.42,70,1
-0.30,0.25,low_curler,26,25,0.08,71,0
-0.87,0.82,flick_on,5,74,0.55,72,1
-0.11,0.09,free_kick_power_shot,32,10,0.03,73,0
-0.61,0.49,volley_power,14,48,0.24,74,1
-0.34,0.27,placed_shot_low,24,31,0.09,75,0
-0.95,0.92,simple_finish_close_range,0,90,0.80,76,1
-0.14,0.10,long_shot_power,31,17,0.04,77,0
-0.68,0.57,shot_on_the_half_volley,15,50,0.28,78,1
-0.32,0.26,driven_curler,27,28,0.08,79,0
-0.88,0.84,close_range_finish,4,76,0.59,80,1
-0.09,0.07,long_range_free_kick_curler,34,13,0.02,81,0
-0.52,0.40,half_volley_power,20,35,0.13,82,0
-0.79,0.69,powerful_header_from_cross,8,61,0.46,83,1
-0.21,0.16,deflected_shot,25,21,0.06,84,0
-0.85,0.78,close_range_volley_power,7,66,0.54,85,1
-0.17,0.13,long_range_shot_curler,32,18,0.05,86,0
-0.63,0.51,shot_on_the_break,16,47,0.25,87,1
-0.36,0.28,driven_power_shot,22,36,0.11,88,0
-0.91,0.87,simple_finish_from_short_pass,3,78,0.63,89,1
-0.05,0.03,long_range_power,36,7,0.01,90,0
-0.57,0.45,cut_back_power,18,40,0.17,91,0
-0.75,0.65,header_from_corner_direct,8,63,0.49,92,1
-0.28,0.23,low_driven_power_shot,25,26,0.07,93,0
-0.89,0.84,flick_on_goal,6,70,0.60,94,1
-0.13,0.10,freekick_power_curler,33,12,0.03,95,0
-0.60,0.48,volley_power_curler,15,46,0.22,96,1
-0.39,0.30,placed_shot_power,21,34,0.10,97,0
-0.96,0.93,simple_finish_from_through_ball,0,95,0.85,98,1
-0.12,0.09,long_shot_power_curler,30,15,0.04,99,0
-0.67,0.56,shot_on_the_half_volley_power,14,52,0.27,100,1
+x,y,xg,shot_type,situation,player_received_ball,last_5_years,goal
+72,34,0.12,Open Play,Through Ball,Pass,True,0
+25,45,0.08,Open Play,Cross,Header,True,0
+90,20,0.25,Open Play,Ground Pass,Dribble,True,1
+5,10,0.02,Open Play,Set Piece,Pass,True,0
+15,60,0.05,Open Play,Through Ball,Pass,True,0
+85,15,0.30,Open Play,Cross,Volley,True,1
+30,30,0.15,Open Play,Ground Pass,Pass,True,0
+95,5,0.40,Open Play,Through Ball,Dribble,True,1
+10,50,0.03,Open Play,Set Piece,Pass,True,0
+60,40,0.18,Open Play,Ground Pass,Pass,True,0
+78,28,0.20,Open Play,Through Ball,Pass,True,0
+22,55,0.07,Open Play,Cross,Header,True,0
+88,18,0.35,Open Play,Ground Pass,Dribble,True,1
+8,12,0.01,Open Play,Set Piece,Pass,True,0
+40,48,0.10,Open Play,Through Ball,Pass,True,0
+75,32,0.22,Open Play,Cross,Volley,True,1
+35,38,0.17,Open Play,Ground Pass,Pass,True,0
+92,8,0.38,Open Play,Through Ball,Dribble,True,1
+18,58,0.06,Open Play,Set Piece,Pass,True,0
+55,45,0.16,Open Play,Ground Pass,Pass,True,0
+70,36,0.19,Open Play,Through Ball,Pass,True,0
+28,52,0.09,Open Play,Cross,Header,True,0
+86,22,0.32,Open Play,Ground Pass,Dribble,True,1
+12,42,0.04,Open Play,Set Piece,Pass,True,0
+45,42,0.13,Open Play,Through Ball,Pass,True,0
+68,30,0.21,Open Play,Cross,Volley,True,0
+32,40,0.14,Open Play,Ground Pass,Pass,True,0
+98,6,0.42,Open Play,Through Ball,Dribble,True,1
+2,20,0.01,Open Play,Set Piece,Pass,True,0
+50,50,0.15,Open Play,Ground Pass,Pass,True,0
+77,26,0.24,Open Play,Through Ball,Pass,True,1
+26,54,0.08,Open Play,Cross,Header,True,0
+84,24,0.31,Open Play,Ground Pass,Dribble,True,1
+16,46,0.05,Open Play,Set Piece,Pass,True,0
+48,46,0.11,Open Play,Through Ball,Pass,True,0
+65,35,0.18,Open Play,Cross,Volley,True,0
+38,36,0.16,Open Play,Ground Pass,Pass,True,0
+96,10,0.39,Open Play,Through Ball,Dribble,True,1
+6,18,0.02,Open Play,Set Piece,Pass,True,0
+58,48,0.17,Open Play,Ground Pass,Pass,True,0
+74,29,0.23,Open Play,Through Ball,Pass,True,1
+24,56,0.07,Open Play,Cross,Header,True,0
+82,24,0.29,Open Play,Ground Pass,Dribble,True,1
+14,44,0.04,Open Play,Set Piece,Pass,True,0
+42,44,0.12,Open Play,Through Ball,Pass,True,0
+62,38,0.19,Open Play,Cross,Volley,True,0
+36,34,0.15,Open Play,Ground Pass,Pass,True,0
+94,12,0.37,Open Play,Through Ball,Dribble,True,1
+4,16,0.01,Open Play,Set Piece,Pass,True,0
+54,52,0.14,Open Play,Ground Pass,Pass,True,0
+76,27,0.25,Open Play,Through Ball,Pass,True,1
+20,60,0.06,Open Play,Cross,Header,True,0
+80,26,0.28,Open Play,Ground Pass,Dribble,True,1
+10,40,0.03,Open Play,Set Piece,Pass,True,0
+46,48,0.11,Open Play,Through Ball,Pass,True,0
+66,33,0.20,Open Play,Cross,Volley,True,0
+34,32,0.14,Open Play,Ground Pass,Pass,True,0
+90,14,0.36,Open Play,Through Ball,Dribble,True,1
+2,14,0.01,Open Play,Set Piece,Pass,True,0
+52,54,0.13,Open Play,Ground Pass,Pass,True,0
+78,25,0.26,Open Play,Through Ball,Pass,True,1
+22,58,0.07,Open Play,Cross,Header,True,0
+86,20,0.30,Open Play,Ground Pass,Dribble,True,1
+18,48,0.05,Open Play,Set Piece,Pass,True,0
+44,46,0.10,Open Play,Through Ball,Pass,True,0
+64,36,0.19,Open Play,Cross,Volley,True,0
+30,38,0.13,Open Play,Ground Pass,Pass,True,0
+88,16,0.34,Open Play,Through Ball,Dribble,True,1
+6,10,0.02,Open Play,Set Piece,Pass,True,0
+56,50,0.15,Open Play,Ground Pass,Pass,True,0
+72,32,0.22,Open Play,Through Ball,Pass,True,1
+28,52,0.08,Open Play,Cross,Header,True,0
+84,22,0.31,Open Play,Ground Pass,Dribble,True,1
+16,42,0.04,Open Play,Set Piece,Pass,True,0
+40,44,0.11,Open Play,Through Ball,Pass,True,0
+60,34,0.17,Open Play,Cross,Volley,True,0
+38,30,0.14,Open Play,Ground Pass,Pass,True,0
+92,8,0.38,Open Play,Through Ball,Dribble,True,1
+10,20,0.03,Open Play,Set Piece,Pass,True,0
+50,50,0.13,Open Play,Ground Pass,Pass,True,0
+76,28,0.24,Open Play,Through Ball,Pass,True,1
+26,56,0.07,Open Play,Cross,Header,True,0
+82,20,0.28,Open Play,Ground Pass,Dribble,True,1
+14,46,0.04,Open Play,Set Piece,Pass,True,0
+46,42,0.12,Open Play,Through Ball,Pass,True,0
+68,32,0.21,Open Play,Cross,Volley,True,0
+34,36,0.15,Open Play,Ground Pass,Pass,True,0
+98,6,0.40,Open Play,Through Ball,Dribble,True,1
+4,18,0.01,Open Play,Set Piece,Pass,True,0
+58,46,0.16,Open Play,Ground Pass,Pass,True,0
+74,30,0.23,Open Play,Through Ball,Pass,True,1
+24,54,0.08,Open Play,Cross,Header,True,0
+80,28,0.29,Open Play,Ground Pass,Dribble,True,1
+12,44,0.04,Open Play,Set Piece,Pass,True,0
+42,48,0.10,Open Play,Through Ball,Pass,True,0
+66,30,0.20,Open Play,Cross,Volley,True,0
+36,38,0.14,Open Play,Ground Pass,Pass,True,0
+96,10,0.39,Open Play,Through Ball,Dribble,True,1
+8,14,0.02,Open Play,Set Piece,Pass,True,0
+54,54,0.14,Open Play,Ground Pass,Pass,True,0
+
 
 ```
+
+**Feature Explanation and Distribution:**
+
+The synthetic dataset includes the following features, inspired by the provided text:
+
+* **x:** X coordinate of the shot on the pitch (numeric, likely uniformly distributed across the width of the pitch, 0-100).
+* **y:** Y coordinate of the shot on the pitch (numeric, likely uniformly distributed across the length of the pitch, 0-100).
+* **xg:** Expected goals (numeric, likely right-skewed distribution with most values between 0 and 0.2, a few higher values).  Represents the probability of a goal given the shot's circumstances.
+* **shot_type:** Type of shot (categorical, likely Open Play is the most frequent).
+* **situation:** The type of scenario leading to the shot (categorical, various possibilities like Through Ball, Cross, Ground Pass, Set Piece).
+* **player_received_ball:** How the player received the ball before the shot (categorical, options like Pass, Header, Dribble, Volley).
+* **last_5_years:** Boolean indicating if the shot occurred in the last 5 years (Boolean, mostly True).
+* **goal:** Binary outcome, 1 if the shot resulted in a goal, 0 otherwise (categorical, imbalanced with more 0s than 1s).
+
+
+**Distribution Notes:**
+
+* Numerical features (x, y, xg) are generated with a mix of uniform and slightly skewed distributions to reflect the potential spatial distribution of shots and the probability of a goal.
+* Categorical features have varying probabilities assigned to different categories to simulate the imbalance and frequency of different shot types and situations as described in the paper.  The goal feature is explicitly imbalanced, reflecting the difficulty of scoring in soccer.
+
+
+This synthetic dataset provides a reasonable approximation of the features and their distributions based on the limited information in the provided text.  The actual distributions in the original dataset might be slightly different.

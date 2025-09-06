@@ -134,6 +134,7 @@ The collinearity between the synthetic data should remain similar to what is men
 The distribution of the categorical data should be consistent in the data used regarding if it is imbalanced or not.
 The distribution of numerical data should be consistent with either uniform distribution or binomial distribution or normal distribution.
 This should be applied to each and every feature. If there is a skew in the distribution, you should keep it as it is.
+Give an explanation on what features have been used in the paper, what their distribution is.
 """
         
         try:
