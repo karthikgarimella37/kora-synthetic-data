@@ -7,6 +7,7 @@ from typing import Optional, Tuple
 import faiss
 import pandas as pd
 import streamlit as st
+from dotenv import load_dotenv
 
 from pdf_parser import pdf_parser
 from generate_embedding import (
@@ -85,11 +86,12 @@ def split_explanation_and_csv(raw_text: str) -> Tuple[str, str]:
 st.set_page_config(page_title="Healthcare Paper → Synthetic Data", layout="wide")
 st.title("Kora Synthetic Healthcare Data Generation")
 
+load_dotenv()
 with st.sidebar:
     # st.header("Settings & API Keys")
-    # llama_key = st.text_input("LLAMA_CLOUD_API_KEY", type="password")
-    # openrouter_key = st.text_input("OPENROUTER_API_KEY", type="password")
-    # dbtwin_key = st.text_input("DBTWIN_API_KEY (optional for scaling)", type="password")
+    llama_key = os.getenv("LLAMA_CLOUD_API_KEY") #st.text_input("LLAMA_CLOUD_API_KEY", type="password")
+    openrouter_key = os.getenv("OPENROUTER_API_KEY") #st.text_input("OPENROUTER_API_KEY", type="password")
+    dbtwin_key = os.getenv("DBTWIN_API_KEY") #st.text_input("DBTWIN_API_KEY (optional for scaling)", type="password")
 
     model_name = st.text_input("LLM Model (OpenRouter)", value="google/gemini-flash-1.5")
     k_chunks = st.number_input("Top K chunks for context", min_value=3, max_value=30, value=10, step=1)
