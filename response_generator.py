@@ -135,6 +135,7 @@ The distribution of the categorical data should be consistent in the data used r
 The distribution of numerical data should be consistent with either uniform distribution or binomial distribution or normal distribution.
 This should be applied to each and every feature. If there is a skew in the distribution, you should keep it as it is.
 Give an explanation on what features have been used in the paper, what their distribution is.
+Generate a sample dataset of 100 records of synthetic data for these features.
 """
         
         try:
