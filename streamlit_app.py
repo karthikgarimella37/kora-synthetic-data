@@ -86,10 +86,10 @@ st.set_page_config(page_title="Healthcare Paper → Synthetic Data", layout="wid
 st.title("Kora Synthetic Healthcare Data Generation")
 
 with st.sidebar:
-    st.header("Settings & API Keys")
-    llama_key = st.text_input("LLAMA_CLOUD_API_KEY", type="password")
-    openrouter_key = st.text_input("OPENROUTER_API_KEY", type="password")
-    dbtwin_key = st.text_input("DBTWIN_API_KEY (optional for scaling)", type="password")
+    # st.header("Settings & API Keys")
+    # llama_key = st.text_input("LLAMA_CLOUD_API_KEY", type="password")
+    # openrouter_key = st.text_input("OPENROUTER_API_KEY", type="password")
+    # dbtwin_key = st.text_input("DBTWIN_API_KEY (optional for scaling)", type="password")
 
     model_name = st.text_input("LLM Model (OpenRouter)", value="google/gemini-flash-1.5")
     k_chunks = st.number_input("Top K chunks for context", min_value=3, max_value=30, value=10, step=1)
