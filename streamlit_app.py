@@ -83,7 +83,7 @@ def split_explanation_and_csv(raw_text: str) -> Tuple[str, str]:
 
 
 st.set_page_config(page_title="Healthcare Paper → Synthetic Data", layout="wide")
-st.title("Healthcare Paper → Synthetic Data Generator")
+st.title("Kora Synthetic Healthcare Data Generation")
 
 with st.sidebar:
     st.header("Settings & API Keys")
